@@ -65,9 +65,7 @@ export default function StarRating({
           ? `${messages[tempRating ? tempRating - 1 : rating - 1]}`
           : tempRating
           ? `${tempRating}/${maxRating}`
-          : rating
-          ? `${rating}/${maxRating} - Thanks for rating!`
-          : "Leave a rating"}
+          : `${rating}/${maxRating}`}
       </p>
     </div>
   );
@@ -83,6 +81,7 @@ function Star({ onClick, full, hover, hoverOff, color, size }) {
 
   return (
     <span
+      className="star-hover"
       style={starStyle}
       onClick={onClick}
       onMouseEnter={hover}
