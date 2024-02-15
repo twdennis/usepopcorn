@@ -1,7 +1,14 @@
 export function WatchedMovie({ movie, onDeleteWatchedMovie, onSelectMovie }) {
   const handleDelete = (e, id) => {
     e.stopPropagation(); // Prevent click event from propagating to parent elements
-    onDeleteWatchedMovie(id);
+
+    const confirmDelete = window.confirm(
+      "Are you sure you're like to remove this movie from your watched list?"
+    );
+
+    if (confirmDelete) {
+      onDeleteWatchedMovie(id);
+    }
   };
 
   return (
