@@ -75,6 +75,22 @@ export function MovieDetails({
     [isLoading, title]
   );
 
+  useEffect(
+    function () {
+      function escapeClose(e) {
+        if (e.code === "Escape") {
+          onCloseMovie();
+        }
+      }
+      document.addEventListener("keydown", escapeClose);
+
+      return function () {
+        document.removeEventListener("keydown", escapeClose);
+      };
+    },
+    [onCloseMovie]
+  );
+
   return (
     <div className="details">
       {isLoading ? (
