@@ -39,6 +39,11 @@ body {
   padding: 0 3.2rem;
   background-color: var(--color-primary);
   border-radius: 0.9rem;
+  transition: ease 0.3s;
+}
+
+.nav-bar:hover {
+  scale: 1.01;
 }
 
 .main {
@@ -247,6 +252,22 @@ body {
   border-radius: 0.9rem;
   background-color: var(--color-background-100);
   box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.2);
+  transition: ease 0.3s;
+}
+
+.summary-selected {
+  background-color: var(--color-primary);
+}
+
+.summary:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  background-color: var(--color-primary);
+}
+
+.toggle-arrow {
+  justify-content: center;
+  margin-top: 15px;
 }
 
 .summary h2 {

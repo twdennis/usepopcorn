@@ -4,7 +4,9 @@ export function WatchedMoviesList({
   watched,
   onDeleteWatchedMovie,
   onSelectMovie,
+  watchedListOpen,
 }) {
+  if (!watchedListOpen) return null;
   return (
     <ul className="list">
       {watched.map((movie) => (
