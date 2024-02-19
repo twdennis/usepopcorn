@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 import { KEY } from "./KEY";
 import { Spinner } from "./Spinner";
+import { useKey } from "./useKey";
 
 export function MovieDetails({
   selectedId,
@@ -12,6 +13,15 @@ export function MovieDetails({
   const [movieDetails, setMovieDetails] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState(0);
+
+  const countRef = useRef(0);
+
+  useEffect(
+    function () {
+      if (userRating) countRef.current += 1;
+    },
+    [userRating]
+  );
 
   const alreadyWatched = watched
     .map((movie) => movie.imdbID)
@@ -43,6 +53,7 @@ export function MovieDetails({
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
+      ratingDecisionsQuantity: countRef.current,
     };
     onAddWatched(newWatchedMovie);
     onCloseMovie();
@@ -75,21 +86,7 @@ export function MovieDetails({
     [isLoading, title]
   );
 
-  useEffect(
-    function () {
-      function escapeClose(e) {
-        if (e.code === "Escape") {
-          onCloseMovie();
-        }
-      }
-      document.addEventListener("keydown", escapeClose);
-
-      return function () {
-        document.removeEventListener("keydown", escapeClose);
-      };
-    },
-    [onCloseMovie]
-  );
+  useKey("Escape", onCloseMovie);
 
   return (
     <div className="details">
