@@ -3,7 +3,7 @@ export function WatchedMovie({ movie, onDeleteWatchedMovie, onSelectMovie }) {
     e.stopPropagation(); // Prevent click event from propagating to parent elements
 
     const confirmDelete = window.confirm(
-      `Are you sure you're like to remove ${movie.title} from your watched list?`
+      `Are you sure you'd like to remove ${movie.title} from your watched list?`
     );
 
     if (confirmDelete) {
