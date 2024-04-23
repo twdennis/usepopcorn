@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { SearchPrompt } from "./SearchPrompt";
 import { Spinner } from "./Spinner";
 import { ErrorMessage } from "./ErrorMessage";
@@ -19,6 +19,10 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [watchedListOpen, setWatchedListOpen] = useState(true);
 
+  const handleCloseMovie = useCallback(() => {
+    setSelectedId(null);
+  }, []);
+  
   const { movies, isLoading, error } = useMovieFetch(query, handleCloseMovie);
 
   const [watched, setWatched] = useLocalStorageState([], "watched");
@@ -29,10 +33,6 @@ export default function App() {
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
-  }
-
-  function handleCloseMovie() {
-    setSelectedId(null);
   }
 
   function handleAddWatched(movie) {
