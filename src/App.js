@@ -22,7 +22,7 @@ export default function App() {
   const handleCloseMovie = useCallback(() => {
     setSelectedId(null);
   }, []);
-  
+
   const { movies, isLoading, error } = useMovieFetch(query, handleCloseMovie);
 
   const [watched, setWatched] = useLocalStorageState([], "watched");
